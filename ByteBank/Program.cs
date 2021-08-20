@@ -12,10 +12,23 @@ namespace ByteBank
         {
             /*ContaCorrente joao = new ContaCorrente(123, 123456);
             Console.WriteLine(ContaCorrente.TaxaOperacao);*/
+            try
+            {
+                ContaCorrente conta = new ContaCorrente(1, 0);
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine("Ocorreu uma excessão do tipo ArgumentExcepetion!");
+                Console.WriteLine(ex.Message);
+
+            }
+
+
+
 
             try
             {
-                Metodo();
+                //Metodo();
             }
             catch (DivideByZeroException e)
             {
