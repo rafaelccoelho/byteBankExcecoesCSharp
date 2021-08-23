@@ -18,6 +18,7 @@ namespace ByteBank
             }
             catch(ArgumentException ex)
             {
+                //Console.WriteLine("Problemas com o parâmetro: " + ex.ParamName);
                 Console.WriteLine("Ocorreu uma excessão do tipo ArgumentExcepetion!");
                 Console.WriteLine(ex.Message);
 

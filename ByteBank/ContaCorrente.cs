@@ -56,11 +56,11 @@ namespace ByteBank
 
             if(agencia <= 0)
             {
-                throw new ArgumentException("A agencia precisa ser maior que zero.");
+                throw new ArgumentException("A agencia precisa ser maior que zero.", nameof(agencia));
             }
             if(numero <= 0)
             {
-                throw new ArgumentException("O numero precisa ser maior que zero.");
+                throw new ArgumentException("O numero precisa ser maior que zero.", nameof(numero));
             }
             Agencia = agencia;
             Numero = numero;
