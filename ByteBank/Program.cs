@@ -14,17 +14,24 @@ namespace ByteBank
             Console.WriteLine(ContaCorrente.TaxaOperacao);*/
             try
             {
-                ContaCorrente conta = new ContaCorrente(1, 0);
+                ContaCorrente conta = new ContaCorrente(1, 100);
+
+                conta.Depositar(50);
+                Console.WriteLine(conta.Saldo);
+                conta.Sacar(151);
             }
-            catch(ArgumentException ex)
+            catch (SaldoInsuficienteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            catch (ArgumentException ex)
             {
                 //Console.WriteLine("Problemas com o parâmetro: " + ex.ParamName);
                 Console.WriteLine("Ocorreu uma excessão do tipo ArgumentExcepetion!");
                 Console.WriteLine(ex.Message);
 
             }
-
-
 
 
             try
