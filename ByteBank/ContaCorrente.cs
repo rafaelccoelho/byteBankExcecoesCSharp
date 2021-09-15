@@ -16,6 +16,10 @@ namespace ByteBank
 
         private double _saldo = 100;
 
+        public int ContadorDeSaquesNaoPermitidos { get; private set; }
+
+        public int ContadorDeTransferenciasNaoPermitidas { get; private set; }
+
         public double Saldo
         {
             get
@@ -63,7 +67,8 @@ namespace ByteBank
 
             if (_saldo < valor)
             {
-                throw new SaldoInsuficienteException(_saldo, valor);
+                ContadorDeSaquesNaoPermitidos++;
+                throw new SaldoInsuficienteException(Saldo, valor);
             }
             
             _saldo -= valor;
@@ -80,10 +85,20 @@ namespace ByteBank
         {
             if (valor < 0)
             {
+               
                 throw new ArgumentException("valor de transferência não pode ser negativo!", nameof(valor));
             }
 
-            Sacar(valor);
+            try
+            {
+                Sacar(valor);
+            }
+            catch (Exception ex)
+            {
+                ContadorDeTransferenciasNaoPermitidas++;
+                throw new OperacaoFinanceiraException("Operação não realizada!", ex);
+            }
+            
             contaDestino.Depositar(valor);
         }
     }

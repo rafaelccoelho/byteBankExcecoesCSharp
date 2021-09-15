@@ -10,9 +10,37 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
+            ContaCorrente c1 = new ContaCorrente(123, 456789);
+            c1.Depositar(50);
+            Console.WriteLine("Saldo da conta 1 = " + c1.Saldo);
+
+
+            ContaCorrente c2 = new ContaCorrente(321, 987654);
+            Console.WriteLine("Saldo da conta 2 = " + c2.Saldo);
+
+            Console.WriteLine("Transferindo R$200 da conta 1 pra a conta 2");
+            try
+            {
+                c1.Transferir(200, c2);
+
+            }
+            catch (OperacaoFinanceiraException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+                Console.WriteLine("Informações de INNER EXCEPTION (Excecao Interna):");
+                Console.WriteLine(ex.InnerException.Message);
+                Console.WriteLine(ex.InnerException.StackTrace);
+            }
+
+
             /*ContaCorrente joao = new ContaCorrente(123, 123456);
             Console.WriteLine(ContaCorrente.TaxaOperacao);*/
-            try
+            
+            
+            
+            /*try
             {
                 ContaCorrente conta = new ContaCorrente(1, 100);
 
@@ -51,6 +79,7 @@ namespace ByteBank
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }
+            */
 
             Console.ReadLine();
         }

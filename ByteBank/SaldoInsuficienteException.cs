@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteBank
 {
-    class SaldoInsuficienteException : Exception
+    class SaldoInsuficienteException : OperacaoFinanceiraException
     {
         public double Saldo { get; }
         public double ValorSaque { get; }
@@ -19,7 +19,7 @@ namespace ByteBank
 
         }
         public SaldoInsuficienteException(double saldo, double valorSaque) :
-            this("Tentativa de saque de: " + valorSaque + "com saldo de + " + saldo)
+            this("Tentativa de saque de R$" + valorSaque + " com saldo de R$" + saldo)
         {
             Saldo = saldo;
             ValorSaque = valorSaque;
